@@ -25,17 +25,14 @@
     "test:prod": "CI=true react-scripts test",
     "test:coverage:prod": "CI=true react-scripts test --coverage",
     "eject": "react-scripts eject",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "prepush": "npm run test:prod"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
