@@ -1,8 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
-
 [![Greenkeeper badge](https://badges.greenkeeper.io/visdesignlab/provenance-lib-core-demo.svg)](https://greenkeeper.io/)
+[![Build Status](https://travis-ci.com/visdesignlab/provenance-lib-core-demo.svg?branch=master)](https://travis-ci.com/visdesignlab/provenance-lib-core-demo)
+
+## Available Scripts
 
 In the project directory, you can run:
 
