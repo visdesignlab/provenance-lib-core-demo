@@ -1,31 +1,31 @@
 import React, {FC} from 'react';
 import styled from 'styled-components';
-import FullSizeSVG from './FullSizeSVG';
 import data from '../Data/miserables.json';
+import BarVisualization from './BarVisualization';
+import {inject, observer} from 'mobx-react';
 
 interface OwnProps {}
 
 type Props = OwnProps;
 
 const Visualization: FC<Props> = () => {
-  console.log(data);
   return (
     <VisualizationDiv>
       <VisPadding>
         <VisualizationBorder>
-          <FullSizeSVG></FullSizeSVG>
+          {/* <FullSizeSVG></FullSizeSVG> */}
         </VisualizationBorder>
       </VisPadding>
       <VisPadding>
         <VisualizationBorder>
-          <FullSizeSVG></FullSizeSVG>
+          <BarVisualization data={data}></BarVisualization>
         </VisualizationBorder>
       </VisPadding>
     </VisualizationDiv>
   );
 };
 
-export default Visualization;
+export default inject('store')(observer(Visualization));
 
 const VisualizationBorder = styled.div`
   height: 100%;

@@ -1,24 +1,30 @@
-import React from 'react';
+import React, {FC} from 'react';
 import styled from 'styled-components';
-import {Container, Header, Menu, Button} from 'semantic-ui-react';
+import {Container, Header, Menu} from 'semantic-ui-react';
 import Visualization from './Components/Visualization';
+import {observer, inject} from 'mobx-react';
+import Store from './Interfaces/Store';
+import UndoRedoButtons from './Components/UndoRedoButtons';
 
-const App: React.FC = () => {
+interface OwnProps {
+  store?: Store;
+}
+
+type Props = OwnProps;
+
+const App: FC<Props> = ({store}: Props) => {
+  const {selectedNode} = store!;
   return (
     <LayoutDiv>
       <Container>
         <LargeHeader textAlign="center" size="huge">
-          Les Misérables Character Co-Occurence
+          Les Misérables Character Co-Occurence {selectedNode}
         </LargeHeader>
       </Container>
       <Container textAlign="center">
         <Menu compact>
           <Menu.Item>
-            <Button.Group size="large">
-              <Button icon="undo" content="Undo"></Button>
-              <Button.Or></Button.Or>
-              <Button icon="redo" content="Redo"></Button>
-            </Button.Group>
+            <UndoRedoButtons></UndoRedoButtons>
           </Menu.Item>
         </Menu>
       </Container>
@@ -27,7 +33,7 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default inject('store')(observer(App));
 
 const LargeHeader = styled(Header)`
   font-size: 4em !important;

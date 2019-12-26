@@ -1,8 +1,15 @@
-import React, {FC} from 'react';
+import React, {FC, MutableRefObject} from 'react';
 import styled from 'styled-components';
 
-const FullSizeSVG: FC = () => {
-  return <SVG></SVG>;
+interface OwnProps {
+  ref: MutableRefObject<SVGSVGElement>;
+  children?: any;
+}
+
+type Props = OwnProps;
+
+const FullSizeSVG: FC<Props> = (props: Props) => {
+  return <SVG ref={props.ref}>{props.children}</SVG>;
 };
 
 export default FullSizeSVG;

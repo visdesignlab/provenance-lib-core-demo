@@ -9,3 +9,8 @@ export interface ApplicationState {
   nodePositions: NodeMap;
   selectedNode: string;
 }
+
+export const defaultState: ApplicationState = {
+  nodePositions: {},
+  selectedNode: 'none',
+};

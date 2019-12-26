@@ -4,18 +4,18 @@ import './index.css';
 import 'semantic-ui-css/semantic.min.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {ApplicationState} from './Interfaces/ApplicationState';
-import {initProvenance} from '@visdesignlab/provenance-lib-core';
+import {Provider} from 'mobx-react';
+import {store} from './Interfaces/Store';
+import {setupProvenance} from './Provenance';
 
-const state: ApplicationState = {
-  nodePositions: {},
-  selectedNode: 'none',
-};
+export const {provenance, actions} = setupProvenance();
 
-const provenance = initProvenance(state);
-console.log(provenance.graph());
-
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root'),
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
