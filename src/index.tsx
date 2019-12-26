@@ -4,6 +4,16 @@ import './index.css';
 import 'semantic-ui-css/semantic.min.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {ApplicationState} from './Interfaces/ApplicationState';
+import {initProvenance} from '@visdesignlab/provenance-lib-core';
+
+const state: ApplicationState = {
+  nodePositions: {},
+  selectedNode: 'none',
+};
+
+const provenance = initProvenance(state);
+console.log(provenance.graph());
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
