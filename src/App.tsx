@@ -1,6 +1,6 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import styled from 'styled-components';
-import {Container, Header, Menu} from 'semantic-ui-react';
+import {Container, Header, Menu, Message} from 'semantic-ui-react';
 import Visualization from './Components/Visualization';
 import {observer, inject} from 'mobx-react';
 import Store from './Interfaces/Store';
@@ -14,12 +14,15 @@ type Props = OwnProps;
 
 const App: FC<Props> = ({store}: Props) => {
   const {selectedNode} = store!;
+  const [showMessage, setShowMessage] = useState(true);
+
   return (
     <LayoutDiv>
       <Container>
         <LargeHeader textAlign="center" size="huge">
-          Les Misérables Character Co-Occurence {selectedNode}
+          Les Misérables Character Co-Occurence
         </LargeHeader>
+        <Header textAlign="center">Selected Node: {selectedNode}</Header>
       </Container>
       <Container textAlign="center">
         <Menu compact>
@@ -27,6 +30,19 @@ const App: FC<Props> = ({store}: Props) => {
             <UndoRedoButtons></UndoRedoButtons>
           </Menu.Item>
         </Menu>
+        {showMessage && (
+          <Message
+            info
+            header={
+              'This demo tracks node movement in the graph and selection of any character either from graph or barchart.'
+            }
+            content={
+              'Use the above buttons to undo and redo actions. You can also press (⌘/Ctrl + Z) for undo and (Shift + ⌘/Ctrl + Z) for redo.'
+            }
+            onDismiss={() => {
+              setShowMessage(false);
+            }}></Message>
+        )}
       </Container>
       <Visualization></Visualization>
     </LayoutDiv>

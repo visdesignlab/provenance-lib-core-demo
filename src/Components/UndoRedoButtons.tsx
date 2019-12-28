@@ -17,12 +17,14 @@ const UndoRedoButtons: FC<Props> = ({store}: Props) => {
     <Button.Group size="large">
       <Button
         icon="undo"
+        primary
         content="Undo"
         disabled={isAtRoot}
         onClick={actions.goBack}></Button>
       <Button.Or></Button.Or>
       <Button
         icon="redo"
+        secondary
         content="Redo"
         disabled={isAtLatest}
         onClick={actions.goForward}></Button>

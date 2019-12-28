@@ -1,8 +1,8 @@
 import React, {FC, useRef, useLayoutEffect, useState, useMemo} from 'react';
 import styled from 'styled-components';
-import Store from '../Interfaces/Store';
 import {inject, observer} from 'mobx-react';
 import Bars from './Bars';
+import Store from '../../Interfaces/Store';
 
 interface OwnProps {
   data: any;
@@ -24,7 +24,7 @@ const BarVisualization: FC<Props> = ({data, store}: Props) => {
     }
   }, []);
 
-  const {nodes, links} = data;
+  const {links} = data;
 
   const linkMap = useMemo(() => {
     const map: {[key: string]: number} = {};

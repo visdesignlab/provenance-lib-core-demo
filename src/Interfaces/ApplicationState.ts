@@ -3,7 +3,10 @@ export interface NodePosition {
   y: number;
 }
 
-export type NodeMap = {[key: string]: NodePosition};
+export interface NodeMap {
+  nodes: any[];
+  links: any[];
+}
 
 export interface ApplicationState {
   nodePositions: NodeMap;
@@ -11,6 +14,9 @@ export interface ApplicationState {
 }
 
 export const defaultState: ApplicationState = {
-  nodePositions: {},
+  nodePositions: {
+    nodes: [],
+    links: [],
+  },
   selectedNode: 'none',
 };

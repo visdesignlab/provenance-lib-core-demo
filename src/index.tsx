@@ -10,6 +10,19 @@ import {setupProvenance} from './Provenance';
 
 export const {provenance, actions} = setupProvenance();
 
+document.onkeydown = e => {
+  let mac = /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform);
+  if (!e.shiftKey && (mac ? e.metaKey : e.ctrlKey) && e.which === 90) {
+    if (!store.isAtRoot) {
+      actions.goBack();
+    }
+  } else if (e.shiftKey && (mac ? e.metaKey : e.ctrlKey) && e.which === 90) {
+    if (!store.isAtLatest) {
+      actions.goForward();
+    }
+  }
+};
+
 ReactDOM.render(
   <Provider store={store}>
     <App />

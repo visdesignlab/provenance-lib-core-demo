@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useMemo} from 'react';
-import Store from '../Interfaces/Store';
+import Store from '../../Interfaces/Store';
 import {inject, observer} from 'mobx-react';
 import {
   scaleLinear,
@@ -12,7 +12,7 @@ import {
   selectAll,
 } from 'd3';
 import styled from 'styled-components';
-import {actions} from '..';
+import {actions} from '../..';
 
 interface OwnProps {
   store?: Store;
@@ -22,6 +22,10 @@ interface OwnProps {
 }
 
 type Props = OwnProps;
+
+const convertIDtoClassForm = (str: string): string => {
+  return str.replace('.', '_');
+};
 
 const Bars: FC<Props> = ({store, width, height, data}: Props) => {
   const {selectedNode} = store!;
@@ -57,7 +61,7 @@ const Bars: FC<Props> = ({store, width, height, data}: Props) => {
       .attr('transform', 'rotate(-90)')
       .attr('dx', '-1em')
       .attr('class', (d: any) => {
-        return `bar-text ${d}`;
+        return `bar-text ${convertIDtoClassForm(d)}`;
       })
       .attr('dy', '-1em')
       .style('dominant-baseline', 'middle');
@@ -65,12 +69,6 @@ const Bars: FC<Props> = ({store, width, height, data}: Props) => {
 
   return (
     <>
-      <rect
-        width={width}
-        height={height}
-        stroke="black"
-        opacity="0.3"
-        fill="none"></rect>
       <g className="axes">
         <g transform={`translate(0, ${height})`} className="x-axis"></g>
         <g className="y-axis"></g>
@@ -81,11 +79,16 @@ const Bars: FC<Props> = ({store, width, height, data}: Props) => {
             isSelected={selectedNode === character}
             onClick={() => actions.selectNode(character)}
             onMouseOver={() => {
-              select(`.${character}`).style('font-weight', 'bold');
+              selectAll(`.${convertIDtoClassForm(character)}`)
+                .style('font-weight', 'bold')
+                .attr('r', 12);
             }}
             onMouseOut={() => {
-              console.log('Out');
-              select(`.${character}`).style('font-weight', 'normal');
+              const el = selectAll(`.${convertIDtoClassForm(character)}`).style(
+                'font-weight',
+                'normal',
+              );
+              if (character !== selectedNode) el.attr('r', 8);
             }}
             x={xScale(character)}
             y={yScale(count)}
