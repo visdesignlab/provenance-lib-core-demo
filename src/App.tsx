@@ -1,26 +1,64 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {FC, useState} from 'react';
+import styled from 'styled-components';
+import {Container, Header, Menu, Message} from 'semantic-ui-react';
+import Visualization from './Components/Visualization';
+import {observer, inject} from 'mobx-react';
+import Store from './Interfaces/Store';
+import UndoRedoButtons from './Components/UndoRedoButtons';
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface OwnProps {
+  store?: Store;
 }
 
-export default App;
+type Props = OwnProps;
+
+const App: FC<Props> = ({store}: Props) => {
+  const {selectedNode} = store!;
+  const [showMessage, setShowMessage] = useState(true);
+
+  return (
+    <LayoutDiv>
+      <Container>
+        <LargeHeader textAlign="center" size="huge">
+          Les Misérables Character Co-Occurence
+        </LargeHeader>
+        <Header textAlign="center">Selected Node: {selectedNode}</Header>
+      </Container>
+      <Container textAlign="center">
+        <Menu compact>
+          <Menu.Item>
+            <UndoRedoButtons></UndoRedoButtons>
+          </Menu.Item>
+        </Menu>
+        {showMessage && (
+          <Message
+            info
+            header={
+              'This demo tracks node movement in the graph and selection of any character either from graph or barchart.'
+            }
+            content={
+              'Use the above buttons to undo and redo actions. You can also press (⌘/Ctrl + Z) for undo and (Shift + ⌘/Ctrl + Z) for redo.'
+            }
+            onDismiss={() => {
+              setShowMessage(false);
+            }}></Message>
+        )}
+      </Container>
+      <Visualization></Visualization>
+    </LayoutDiv>
+  );
+};
+
+export default inject('store')(observer(App));
+
+const LargeHeader = styled(Header)`
+  font-size: 4em !important;
+  padding: 0.25em !important;
+`;
+
+const LayoutDiv = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: min-content min-content 1fr;
+`;
