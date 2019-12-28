@@ -21,7 +21,7 @@ interface AppProvenance {
 }
 
 export function setupProvenance(): AppProvenance {
-  const provenance = initProvenance(defaultState);
+  const provenance = initProvenance(defaultState, true);
 
   provenance.addGlobalObserver(() => {
     let isAtRoot = false;
