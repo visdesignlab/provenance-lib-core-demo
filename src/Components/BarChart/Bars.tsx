@@ -13,6 +13,7 @@ import {
 } from 'd3';
 import styled from 'styled-components';
 import {actions} from '../..';
+import {Popup, Header} from 'semantic-ui-react';
 
 interface OwnProps {
   store?: Store;
@@ -75,27 +76,30 @@ const Bars: FC<Props> = ({store, width, height, data}: Props) => {
       </g>
       <g className="bars">
         {data.map(({character, count}) => (
-          <Bar
-            isSelected={selectedNode === character}
-            onClick={() => actions.selectNode(character)}
-            onMouseOver={() => {
-              selectAll(`.${convertIDtoClassForm(character)}`)
-                .style('font-weight', 'bold')
-                .attr('r', 12);
-            }}
-            onMouseOut={() => {
-              const el = selectAll(`.${convertIDtoClassForm(character)}`).style(
-                'font-weight',
-                'normal',
-              );
-              if (character !== selectedNode) el.attr('r', 8);
-            }}
-            x={xScale(character)}
-            y={yScale(count)}
-            width={xScale.bandwidth()}
-            height={height - yScale(count)}>
-            <title>{character}</title>
-          </Bar>
+          <Popup
+            key={character}
+            trigger={
+              <Bar
+                isSelected={selectedNode === character}
+                onClick={() => actions.selectNode(character)}
+                className={convertIDtoClassForm(character)}
+                onMouseOver={() => {
+                  selectAll(`.${convertIDtoClassForm(character)}`)
+                    .style('font-weight', 'bold')
+                    .attr('r', 12);
+                }}
+                onMouseOut={() => {
+                  const el = selectAll(
+                    `.${convertIDtoClassForm(character)}`,
+                  ).style('font-weight', 'normal');
+                  if (character !== selectedNode) el.attr('r', 8);
+                }}
+                x={xScale(character)}
+                y={yScale(count)}
+                width={xScale.bandwidth()}
+                height={height - yScale(count)}></Bar>
+            }
+            content={<Header>{character}</Header>}></Popup>
         ))}
       </g>
     </>

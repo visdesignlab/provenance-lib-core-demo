@@ -3,7 +3,7 @@ import Store from '../../Interfaces/Store';
 import {actions} from '../..';
 import * as d3 from 'd3';
 import {inject, observer} from 'mobx-react';
-import {select, scaleOrdinal, schemeCategory10, drag} from 'd3';
+import {select, scaleOrdinal, schemeCategory10, drag, selectAll} from 'd3';
 import styled from 'styled-components';
 import {Popup, Header} from 'semantic-ui-react';
 
@@ -113,7 +113,9 @@ const NodeLinkDetails: FC<Props> = ({store, height, width}: Props) => {
               <Node
                 isNeighbour={neighbourNodeIds.includes(node.id)}
                 onMouseOver={() => {
-                  select(`.${convertIDtoClassForm(node.id)}`).attr('r', 12);
+                  const curr = selectAll(`.${convertIDtoClassForm(node.id)}`);
+                  curr.attr('r', 12);
+                  curr.style('fill', 'blueviolet !important');
                 }}
                 onMouseLeave={() => {
                   if (node.id !== selectedNode)
