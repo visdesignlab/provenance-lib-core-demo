@@ -8,7 +8,7 @@
     "clipboard": "^2.0.4",
     "d3": "^5.14.2",
     "mobx": "^5.15.1",
-    "mobx-react": "^6.1.4",
+    "mobx-react": "6.1.7",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "semantic-ui-css": "^2.4.1",
