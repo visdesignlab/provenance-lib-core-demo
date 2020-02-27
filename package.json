@@ -50,7 +50,7 @@
     "@types/node": "^13.1.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
-    "@types/styled-components": "^4.4.1",
+    "@types/styled-components": "^5.0.1",
     "@welldone-software/why-did-you-render": "^3.5.0",
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "3.0.2",
