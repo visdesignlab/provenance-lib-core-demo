@@ -14,7 +14,6 @@ import Visualization from './Components/Visualization';
 import {observer, inject} from 'mobx-react';
 import Store from './Interfaces/Store';
 import UndoRedoButtons from './Components/UndoRedoButtons';
-import {provenance} from '.';
 import ClipboardJS from 'clipboard';
 
 interface OwnProps {
@@ -51,7 +50,7 @@ const App: FC<Props> = ({store}: Props) => {
                 <Button
                   onClick={() =>
                     setShareUrl(
-                      `${window.location.href}#${provenance.exportState(true)}`,
+                      `${window.location.href}`,
                     )
                   }
                   icon

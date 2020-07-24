@@ -1,17 +1,16 @@
 import {
   Provenance,
-  initProvenance,
-  isStateNode,
+  isStateNode
 } from '@visdesignlab/provenance-lib-core';
 import {
   ApplicationState,
-  defaultState,
-  NodeMap,
+  NodeMap
 } from './Interfaces/ApplicationState';
+
 import {store} from './Interfaces/Store';
 
 interface AppProvenance {
-  provenance: Provenance<ApplicationState>;
+  provenance: Provenance<ApplicationState, unknown, unknown>;
   actions: {
     goForward: () => void;
     goBack: () => void;
@@ -21,7 +20,7 @@ interface AppProvenance {
 }
 
 export function setupProvenance(): AppProvenance {
-  const provenance = initProvenance(defaultState, true);
+  const provenance = store.provenance;
 
   provenance.addGlobalObserver(() => {
     let isAtRoot = false;
@@ -52,31 +51,6 @@ export function setupProvenance(): AppProvenance {
 
   provenance.done();
 
-  const setNodePositions = (pos: NodeMap, skipProvenance: boolean = false) => {
-    if (skipProvenance) {
-      store.nodePositions = JSON.parse(JSON.stringify(pos));
-      return;
-    }
-    provenance.applyAction(
-      'Setting node positions',
-      (state: ApplicationState) => {
-        state.nodePositions = JSON.parse(JSON.stringify(pos));
-        return state;
-      },
-    );
-  };
-
-  const selectNode = (node: string) => {
-    provenance.applyAction(`Selecting ${node}`, (state: ApplicationState) => {
-      if (state.selectedNode === node) {
-        state.selectedNode = 'none';
-      } else {
-        state.selectedNode = node;
-      }
-      return state;
-    });
-  };
-
   const goForward = () => {
     provenance.goForwardOneStep();
   };
@@ -84,6 +58,14 @@ export function setupProvenance(): AppProvenance {
   const goBack = () => {
     provenance.goBackOneStep();
   };
+
+  const selectNode = (node:string) => {
+    store.selectNode(node);
+  }
+
+  const setNodePositions = (pos:NodeMap, skipProvenance: boolean = false) => {
+    store.setNodePositions(pos, skipProvenance);
+  }
 
   return {
     provenance,
