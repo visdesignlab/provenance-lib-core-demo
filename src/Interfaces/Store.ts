@@ -8,6 +8,7 @@ import {
 
 export default class Store {
   provenance: Provenance<ApplicationState, unknown, unknown> = initProvenance<ApplicationState, unknown, unknown>(defaultState, false);
+
   @observable isAtRoot: boolean = true;
   @observable isAtLatest: boolean = true;
   @observable selectedNode: string = defaultState.selectedNode;
