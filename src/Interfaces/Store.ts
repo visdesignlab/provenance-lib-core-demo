@@ -12,6 +12,7 @@ export default class Store {
   @observable isAtLatest: boolean = true;
   @observable selectedNode: string = defaultState.selectedNode;
   @observable nodePositions: NodeMap = defaultState.nodePositions;
+
   @computed get getNodePositions() {
     return JSON.parse(JSON.stringify(this.nodePositions));
   };
@@ -20,10 +21,10 @@ export default class Store {
       this.nodePositions.nodes.length > 0 && this.nodePositions.links.length > 0
     );
   };
-
+  //
   @action selectNode(node:string)
   {
-    let action = this.provenance.addAction(
+    let a = this.provenance.addAction(
       `Selecting ${node}`,
        (state: ApplicationState) => {
         if (state.selectedNode === node) {
@@ -34,15 +35,15 @@ export default class Store {
         return state;
     });
 
-    action.applyAction();
+    a.applyAction();
   }
 
   @action setNodePositions(pos: NodeMap, skipProvenance: boolean = false) {
     if (skipProvenance) {
-      store.nodePositions = JSON.parse(JSON.stringify(pos));
+      this.nodePositions = JSON.parse(JSON.stringify(pos));
       return;
     }
-    let action = this.provenance.addAction(
+    let a = this.provenance.addAction(
       'Setting node positions',
       (state: ApplicationState) => {
         state.nodePositions = JSON.parse(JSON.stringify(pos));
@@ -50,7 +51,7 @@ export default class Store {
       },
     );
 
-    action.applyAction();
+    a.applyAction();
   };
 }
 
