@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/provenance-lib-core-demo/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/provenance-lib-core-demo/static/js/main.c0bf69a5.chunk.js",
+    "main.js.map": "/provenance-lib-core-demo/static/js/main.c0bf69a5.chunk.js.map",
+    "runtime-main.js": "/provenance-lib-core-demo/static/js/runtime-main.f26fe606.js",
+    "runtime-main.js.map": "/provenance-lib-core-demo/static/js/runtime-main.f26fe606.js.map",
+    "static/css/2.703d80d2.chunk.css": "/provenance-lib-core-demo/static/css/2.703d80d2.chunk.css",
+    "static/js/2.3df2d9ab.chunk.js": "/provenance-lib-core-demo/static/js/2.3df2d9ab.chunk.js",
+    "static/js/2.3df2d9ab.chunk.js.map": "/provenance-lib-core-demo/static/js/2.3df2d9ab.chunk.js.map",
+    "index.html": "/provenance-lib-core-demo/index.html",
+    "precache-manifest.52980842c91235842da6e170fa21a028.js": "/provenance-lib-core-demo/precache-manifest.52980842c91235842da6e170fa21a028.js",
+    "service-worker.js": "/provenance-lib-core-demo/service-worker.js",
+    "static/css/2.703d80d2.chunk.css.map": "/provenance-lib-core-demo/static/css/2.703d80d2.chunk.css.map",
+    "static/css/main.5ecd60fb.chunk.css.map": "/provenance-lib-core-demo/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.3df2d9ab.chunk.js.LICENSE.txt": "/provenance-lib-core-demo/static/js/2.3df2d9ab.chunk.js.LICENSE.txt",
+    "static/media/semantic.min.css": "/provenance-lib-core-demo/static/media/outline-icons.ef60a4f6.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f26fe606.js",
+    "static/css/2.703d80d2.chunk.css",
+    "static/js/2.3df2d9ab.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.c0bf69a5.chunk.js"
+  ]
+}
