@@ -44,7 +44,7 @@ const App: FC<Props> = ({store}: Props) => {
           <Menu.Item>
             <UndoRedoButtons></UndoRedoButtons>
           </Menu.Item>
-          <Menu.Item>
+<!--           <Menu.Item>
             <Modal
               trigger={
                 <Button
@@ -82,7 +82,7 @@ const App: FC<Props> = ({store}: Props) => {
                 </Button>
               </Modal.Actions>
             </Modal>
-          </Menu.Item>
+          </Menu.Item> -->
         </Menu>
         {showMessage && (
           <Message
