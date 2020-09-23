@@ -44,45 +44,6 @@ const App: FC<Props> = ({store}: Props) => {
           <Menu.Item>
             <UndoRedoButtons></UndoRedoButtons>
           </Menu.Item>
-<!--           <Menu.Item>
-            <Modal
-              trigger={
-                <Button
-                  onClick={() =>
-                    setShareUrl(
-                      `${window.location.href}`,
-                    )
-                  }
-                  icon
-                  labelPosition="left"
-                  primary>
-                  <Icon name="share alternate"></Icon>
-                  Share current state with url
-                </Button>
-              }>
-              <Modal.Header>
-                Use the following URL to share your state
-              </Modal.Header>
-              <Modal.Content scrolling>
-                <Message info>Length of URL: {shareUrl.length}</Message>
-                <Segment
-                  ref={urlRef}
-                  textAlign="justified"
-                  style={{wordWrap: 'anywhere'}}>
-                  {shareUrl}
-                </Segment>
-              </Modal.Content>
-              <Modal.Actions>
-                <Button
-                  icon
-                  className="copy-clipboard"
-                  data-clipboard-text={shareUrl}>
-                  <Icon name="copy"></Icon>
-                  Copy
-                </Button>
-              </Modal.Actions>
-            </Modal>
-          </Menu.Item> -->
         </Menu>
         {showMessage && (
           <Message
